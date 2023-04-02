@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import teacup from '../images/teacup.png';
 import { cartActions } from '../store/slices/cart-slice';
 import { teaActions } from '../store/slices/tea-slice';
+import { userActions } from '../store/slices/user-slice';
 
 function Tea() {
+    const isSignedIn              = useSelector((state) => state.user.isSignedIn);
     const tea                     = useSelector((state) => state.tea.tea);
     const items                   = useSelector((state) => state.cart.items);
     const price                   = useSelector((state) => state.tea.tea.price);
@@ -66,8 +68,16 @@ function Tea() {
         }
     }
 
+    const logout = (e) => {
+        e.preventDefault();
+        dispatch(userActions.logout());
+    }
+
     return (
         <main id="main-tea">
+            {isSignedIn ? 
+                <p id="logout"><a className="link-main" href="" onClick={(e) => logout(e)}>Logga ut</a></p> 
+                : null}
             <div id="tea-left">
                 <img id="tea-image" src={teacup}></img>
             </div>

@@ -5,6 +5,7 @@ import SearchForm from '../components/home/search-form';
 import ToggleBtns from '../components/home/toggle-btns';
 import { useSelector, useDispatch } from 'react-redux';
 import { teaActions } from '../store/slices/tea-slice';
+import { userActions } from '../store/slices/user-slice';
 
 function Home() {
     const teas                            = useSelector((state) => state.tea.teas);
@@ -13,6 +14,7 @@ function Home() {
     const [isSearch, setIsSearch]         = useState(false);
     const isCurrentPage                   = useSelector((state) => state.tea.currentPage);
     const numberOfPages                   = useSelector((state) => state.tea.numberOfPages);
+    const isSignedIn                      = useSelector((state) => state.user.isSignedIn);
     const dispatch = useDispatch();
 
     const getAllTeas = async () => {
@@ -36,6 +38,11 @@ function Home() {
         }
     }
 
+    const logout = (e) => {
+        e.preventDefault();
+        dispatch(userActions.logout());
+    }
+
     useEffect(() => {
         if (!isSearch) {
             getAllTeas();
@@ -45,7 +52,9 @@ function Home() {
     return (
         <main>
             <h1>Våra teer</h1>
-            <p id="login"><Link className="link-main" to="/login">Fyll på teskåpet</Link></p>
+            {isSignedIn ? 
+                <p id="logout"><a className="link-main" href="" onClick={(e) => logout(e)}>Logga ut</a></p> :
+                <p id="login"><Link className="link-main" to="/login">Fyll på teskåpet</Link></p>}
             <div className="row">
                 <SearchForm setSearch={setIsSearch} getTeas={filterTeas} />
                 {teas.length ? <Teas isSearch={isSearch} teas={results} /> :
