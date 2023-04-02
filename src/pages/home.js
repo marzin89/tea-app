@@ -53,7 +53,7 @@ function Home() {
                 {numberOfPages > 1 ? <ToggleBtns isCurrentPage={isCurrentPage} /> : null}
             </div>
         </main>
-    )
+    );
 }
 
 export default Home;

@@ -6,6 +6,7 @@ import Admin from './pages/admin';
 import Tea from './pages/tea';
 import Checkout from './pages/checkout';
 import Cart from './components/cart/cart';
+import Consent from './components/consent/consent';
 import Footer from './components/footer/footer';
 import {
   BrowserRouter as Router,
@@ -18,6 +19,7 @@ import { useSelector } from 'react-redux';
 function App() {
   const isSignedIn = useSelector((state) => state.user.isSignedIn);
   const showCart   = useSelector((state) => state.cart.showCart);
+  const isConsent  = useSelector((state) => state.user.isConsent);
 
   return (
     <div className="App">
@@ -33,6 +35,7 @@ function App() {
         <Route path="/tea" element={<Tea />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
+      {!isConsent ? <Consent /> : null}
       <Footer />
       </Router>
     </div>

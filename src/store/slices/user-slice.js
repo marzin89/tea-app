@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
-    name:           'user',
+    name:                         'user',
     initialState: {
-        isSignedIn: false,
+        isSignedIn:               false,
+        isConsent:                false,
+        cookiePreferences: {
+            useNecessaryCookies:  true,
+            useFunctionalCookies: false,
+            useAnalyticsCookies:  false,
+        }
     },
     reducers: {
         login(state) {
@@ -11,7 +17,17 @@ const userSlice = createSlice({
         },
         logout(state) {
             return {...state, isSignedIn: false};
-        }
+        },
+        setConsentAndCookiePreferences(state, action) {
+            return {
+                ...state,
+                isConsent:                true,
+                cookiePreferences: {
+                    useFunctionalCookies: action.payload.useFunctionalCookies,
+                    useAnalyticsCookies:  action.payload.useAnalyticsCookies,
+                }
+            }
+        },
     }
 });
 
