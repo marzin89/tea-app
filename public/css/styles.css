@@ -166,6 +166,10 @@ button:hover {
     cursor: pointer;
 }
 
+#submit-btn {
+    margin: 0;
+}
+
 .active-toggle-btn {
     width: 40px;
     height: 40px;
@@ -253,14 +257,17 @@ img {
     height: auto;
 }
 
-#login, #login-signup, #logout, #signup {
-    margin: 10px auto;
+#login, #logout {
+    margin: 5px auto;
     text-align: right;
     padding-right: 10px;
 }
 
-#signup {
+#login-signup, #signup {
+    margin: 5px auto;
+    text-align: right;
     max-width: 400px;
+    padding-right: 0;
 }
 
 #cart {
@@ -345,15 +352,13 @@ footer > p {
     color: rgb(209, 246, 209);
 }
 
-#h1-login, #h1-signup, #login-signup {
-    width: 97%;
+#h1-login, #h1-signup {
     max-width: 400px;
-    padding-right: 10px;
+    padding-left: 0;
 }
 
-#signup {
-    text-align: right;
-    margin: 10px auto;
+#h1-tea, #h1-checkout {
+    padding-left: 0;
 }
 
 #rating {

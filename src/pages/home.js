@@ -51,10 +51,10 @@ function Home() {
 
     return (
         <main>
-            <h1>Våra teer</h1>
             {isSignedIn ? 
                 <p id="logout"><a className="link-main" href="" onClick={(e) => logout(e)}>Logga ut</a></p> :
                 <p id="login"><Link className="link-main" to="/login">Fyll på teskåpet</Link></p>}
+            <h1>Våra teer</h1>
             <div className="row">
                 <SearchForm setSearch={setIsSearch} getTeas={filterTeas} />
                 {teas.length ? <Teas isSearch={isSearch} teas={results} /> :

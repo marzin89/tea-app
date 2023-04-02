@@ -27,7 +27,6 @@ function SignUp() {
     return (
         <section>
             <h1 id="h1-signup">Registrering</h1>
-            <p id="login-signup"><Link className="link-main" to="/login">Logga in</Link></p>
             <form>
                 <label htmfor="first-name">Förnamn *</label>
                 <input type="text" id="first-name" className="text-input" ref={firstNameRef}></input>
@@ -48,8 +47,9 @@ function SignUp() {
                 <input type="email" id="email" className="text-input" ref={emailRef}></input>
                 {emailEmpty ? <p className="error">{emailEmpty}</p> : null}
                 {emailInvalid ? <p className="error">{emailInvalid}</p> : null}           
-                <button>Registrera</button>
+                <button id="submit-btn">Registrera</button>
             </form>
+            <p id="login-signup"><Link className="link-main" to="/login">Logga in</Link></p>
         </section>
     )
 }

@@ -14,10 +14,10 @@ const Checkout = () => {
     return (
         <main>
             <section id="checkout">
-                <h1>Ditt köp</h1>
                 {isSignedIn ?
                     <p id="logout"><a className="link-main" href="" onClick={(e) => logout(e)}>Logga ut</a></p> 
-                    : null}
+                        : null}
+                <h1 id="h1-checkout">Ditt köp</h1>
                 <Cart id="checkout-cart" />
                 <button className="btn">Betala</button>
             </section>

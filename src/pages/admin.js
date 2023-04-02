@@ -80,8 +80,8 @@ function Admin() {
 
     return (
         <main>
-            <h1 id="h1-admin">Admin</h1>
             <p id="logout"><a className="link-main" href="" onClick={(e) => logout(e)}>Logga ut</a></p>
+            <h1 id="h1-admin">Admin</h1>
             <AdminForm action={action} tea={tea} setAction={setAction} add={addTea} update={updateTea} />
             {teas.length ? <TeaList teas={teas} setAction={setAction} setTea={setTea} delete={deleteTea} />
                 : <p className="error">{errorMessage}</p>}

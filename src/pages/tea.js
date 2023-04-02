@@ -82,7 +82,7 @@ function Tea() {
                 <img id="tea-image" src={teacup}></img>
             </div>
             <div id="tea-right">
-                <h1>{tea.name}</h1>
+                <h1 id="h1-tea">{tea.name}</h1>
                 <p className="price">{sum ? sum : price} :-</p>
                 <select id="quantity-select-tea" className="text-input" onChange={(e) => handleChange(e)}>
                     <option>100</option>
