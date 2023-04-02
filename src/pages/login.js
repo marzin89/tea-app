@@ -45,21 +45,23 @@ function Login() {
     }
 
     return (
-      <section>
-        <h1 id="h1-login">Logga in</h1>
-        <form id="login-form" onSubmit={(e) => handleSubmit(e)}>
-            <label htmlFor="username">Användarnamn</label>
-            <input type="text" id="username" className="text-input" ref={usernameRef}></input>
-            <label htmlFor="password">Lösenord</label>
-            <input type="password" id="password" className="text-input" ref={passwordRef}></input>
-            <button id="submit-btn">Logga in</button>
-            <p className="error">{usernameError}</p>
-            <p className="error">{passwordError}</p>
-            <p className="error">{errorMessage}</p>
-        </form>
-        <p id="signup"><Link className="link-main" to="/signup">Registrera dig</Link></p>
-      </section>
-    )
+      <main>
+        <section>
+          <h1 id="h1-login">Logga in</h1>
+          <form id="login-form" onSubmit={(e) => handleSubmit(e)}>
+              <label htmlFor="username">Användarnamn</label>
+              <input type="text" id="username" className="text-input" ref={usernameRef}></input>
+              <label htmlFor="password">Lösenord</label>
+              <input type="password" id="password" className="text-input" ref={passwordRef}></input>
+              <button id="submit-btn" className="btn">Logga in</button>
+              <p className="error">{usernameError}</p>
+              <p className="error">{passwordError}</p>
+              <p className="error">{errorMessage}</p>
+          </form>
+          <p id="signup"><Link className="link-main" to="/signup">Registrera dig</Link></p>
+        </section>
+      </main>
+    );
 }
 
 export default Login;

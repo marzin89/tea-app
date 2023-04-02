@@ -106,7 +106,7 @@ const AdminForm = (props) => {
                 <textarea id="description" className="text-input" defaultValue={props.tea.description} 
                     ref={descriptionRef}></textarea>
                 {descrErr ? <p className="error">{descrErr}</p> : null}
-                <button id="add-btn">{props.action == 'add' ? 'Lägg till' : 'Uppdatera'}</button>
+                <button id="submit-btn" className="btn">{props.action == 'add' ? 'Lägg till' : 'Uppdatera'}</button>
             </form>
         </section>
     );
