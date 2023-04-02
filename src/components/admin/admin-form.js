@@ -76,32 +76,44 @@ const AdminForm = (props) => {
                         <label htmlFor="put">Uppdatera</label>
                     </div>
                 </div>
-                <label htmlFor="name">Namn *</label>
-                <input id="name" className="text-input" ref={nameRef} defaultValue={props.tea.name}></input>
-                {nameErr ? <p className="error">{nameErr}</p> : null}
-                <label htmlFor="type">Kategori *</label>
-                <select id="type" className="text-input" defaultValue={props.tea.type} 
-                    ref={typeRef}>
-                    <option value=""></option>
-                    <option value="Svart">Svart</option>
-                    <option value="Grönt">Grönt</option>
-                    <option value="Vitt">Vitt</option>
-                    <option value="Oolong">Oolong</option>
-                </select>
-                {typeErr ? <p className="error">{typeErr}</p> : null}
-                <label htmlFor="origin">Ursprung *</label>
-                <select id="origin" className="text-input" defaultValue={props.tea.origin} 
-                    ref={originRef}>
-                    <option value=""></option>
-                    <option value="Indien">Indien</option>
-                    <option value="Kina">Kina</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Sri Lanka">Sri Lanka</option>
-                </select>
-                {originErr ? <p className="error">{originErr}</p> : null}
-                <label htmlFor="price">Pris *</label>
-                <input id="price" className="text-input" defaultValue={props.tea.price} ref={priceRef}></input>
-                {priceErr ? <p className="error">{priceErr}</p> : null}
+                <div className="row">
+                    <div className="admin-form-left">
+                        <label htmlFor="name">Namn *</label>
+                        <input id="name" className="text-input" ref={nameRef} defaultValue={props.tea.name}></input>
+                        {nameErr ? <p className="error">{nameErr}</p> : null}
+                    </div>
+                    <div className="admin-form-right">
+                        <label htmlFor="type">Kategori *</label>
+                        <select id="type" className="text-input" defaultValue={props.tea.type} 
+                            ref={typeRef}>
+                            <option value=""></option>
+                            <option value="Svart">Svart</option>
+                            <option value="Grönt">Grönt</option>
+                            <option value="Vitt">Vitt</option>
+                            <option value="Oolong">Oolong</option>
+                        </select>
+                        {typeErr ? <p className="error">{typeErr}</p> : null}
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="admin-form-left">
+                        <label htmlFor="origin">Ursprung *</label>
+                        <select id="origin" className="text-input" defaultValue={props.tea.origin} 
+                            ref={originRef}>
+                            <option value=""></option>
+                            <option value="Indien">Indien</option>
+                            <option value="Kina">Kina</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Sri Lanka">Sri Lanka</option>
+                        </select>
+                        {originErr ? <p className="error">{originErr}</p> : null}
+                    </div>
+                    <div className="admin-form-right">
+                        <label htmlFor="price">Pris *</label>
+                        <input id="price" className="text-input" defaultValue={props.tea.price} ref={priceRef}></input>
+                        {priceErr ? <p className="error">{priceErr}</p> : null}
+                    </div>
+                </div>
                 <label htmlFor="description">Beskrivning *</label>
                 <textarea id="description" className="text-input" defaultValue={props.tea.description} 
                     ref={descriptionRef}></textarea>

@@ -121,6 +121,7 @@ form {
 }
 
 #admin-form {
+    max-width: 600px;
     margin: 0 10px;
 }
 
@@ -160,6 +161,10 @@ input[type="radio"] {
     font-family: inherit;
     font-size: inherit;
     padding: 2.5px;
+}
+
+textarea {
+    height: 200px;
 }
 
 button:hover {
@@ -518,6 +523,16 @@ footer > p {
     #selected-cookies-btn {
         margin: 0 2%;
     }
+
+    .admin-form-left {
+        width: 49%;
+        float: left;
+    }
+
+    .admin-form-right {
+        width: 49%;
+        float: right;
+    }
 }
 
 @media only screen and (min-width: 960px) {
@@ -580,5 +595,15 @@ footer > p {
 
     #selected-cookies-btn {
         margin: 0 2%;
+    }
+
+    .admin-form-left {
+        width: 49%;
+        float: left;
+    }
+
+    .admin-form-right {
+        width: 49%;
+        float: right;
     }
 }
