@@ -5,11 +5,10 @@ const userSlice = createSlice({
     initialState: {
         isSignedIn:               false,
         isConsent:                false,
-        cookiePreferences: {
-            useNecessaryCookies:  true,
-            useFunctionalCookies: false,
-            useAnalyticsCookies:  false,
-        }
+        useNecessaryCookies:      true,
+        useFunctionalCookies:     false,
+        useAnalyticsCookies:      false,
+        itemsViewed:              [],
     },
     reducers: {
         login(state) {
@@ -21,13 +20,18 @@ const userSlice = createSlice({
         setConsentAndCookiePreferences(state, action) {
             return {
                 ...state,
-                isConsent:                true,
-                cookiePreferences: {
-                    useFunctionalCookies: action.payload.useFunctionalCookies,
-                    useAnalyticsCookies:  action.payload.useAnalyticsCookies,
-                }
+                isConsent:            true,
+                useFunctionalCookies: action.payload.useFunctionalCookies,
+                useAnalyticsCookies:  action.payload.useAnalyticsCookies,
             }
         },
+        addItemViewed(state, action) {
+            const itemExists = state.itemsViewed.find((item) => item._id == action.payload._id);
+
+            if (!itemExists) {
+                return {...state, itemsViewed: [...state.itemsViewed, action.payload]}
+            }
+        }
     }
 });
 
