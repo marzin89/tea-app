@@ -5,9 +5,11 @@ const userSlice = createSlice({
     initialState: {
         isSignedIn:               false,
         isConsent:                false,
-        useNecessaryCookies:      true,
-        useFunctionalCookies:     false,
-        useAnalyticsCookies:      false,
+        cookiePreferences: {
+            useNecessaryCookies:  true,
+            useFunctionalCookies: false,
+            useAnalyticsCookies:  false,
+        },
         itemsViewed:              [],
     },
     reducers: {
@@ -20,9 +22,11 @@ const userSlice = createSlice({
         setConsentAndCookiePreferences(state, action) {
             return {
                 ...state,
-                isConsent:            true,
-                useFunctionalCookies: action.payload.useFunctionalCookies,
-                useAnalyticsCookies:  action.payload.useAnalyticsCookies,
+                isConsent:                true,
+                cookiePreferences: {
+                    useFunctionalCookies: action.payload.useFunctionalCookies,
+                    useAnalyticsCookies:  action.payload.useAnalyticsCookies,
+                }
             }
         },
         addItemViewed(state, action) {
