@@ -16,7 +16,7 @@ function Home() {
     const numberOfPages                   = useSelector((state) => state.tea.numberOfPages);
     const isSignedIn                      = useSelector((state) => state.user.isSignedIn);
     const useAnalyticsCookies             = useSelector((state) => state.user.cookiePreferences.useAnalyticsCookies);
-    const itemsViewed                     = useSelector((state) => state.tea.itemsViewed);
+    const relatedProducts                 = useSelector((state) => state.tea.relatedProducts);
     const dispatch = useDispatch();
 
     const getAllTeas = async () => {
@@ -46,8 +46,8 @@ function Home() {
     }
 
     useEffect(() => {
-        if (useAnalyticsCookies && itemsViewed.length) {
-            dispatch(teaActions.setRelatedProducts())
+        if (useAnalyticsCookies) {
+            dispatch(teaActions.setRelatedProducts());
         }
         if (!isSearch) {
             getAllTeas();

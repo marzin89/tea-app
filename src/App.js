@@ -15,6 +15,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { teaActions } from './store/slices/tea-slice';
 import { userActions } from './store/slices/user-slice';
 import { useEffect } from 'react';
 
@@ -25,6 +26,7 @@ function App() {
   const dispatch   = useDispatch();
 
   useEffect(() => {
+    dispatch(teaActions.fetchState());
     dispatch(userActions.fetchState());
   })
 

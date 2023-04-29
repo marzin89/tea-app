@@ -14,6 +14,9 @@ const teaSlice = createSlice({
         relatedProducts: [],
     },
     reducers: {
+        fetchState(state) {
+            return {...state}
+        },
         setTeasAdmin(state, action) {
             return { ...state, teas: action.payload }
         },
@@ -90,13 +93,14 @@ const teaSlice = createSlice({
             return {...state, itemsViewed: itemsViewed}
         },
         setRelatedProducts(state) {
-            const teas = [];
-
             if (state.itemsViewed.length) {
-                state.itemsViewed.foreach((element) => {
-                    const tea = state.teas.find((item) => item.type == element.type && item._id != element._id);
-                    teas = tea ? teas.push(tea) : teas;
-                });
+                let teas = [];
+
+                for (let i = 0; i < state.itemsViewed.length; i++) {
+                    const element = state.itemsViewed[i];
+                    const tea     = state.teas.find((item) => item.type == element.type && item._id != element._id);
+                    teas          = tea ? teas.concat(tea) : teas;
+                }
     
                 return {...state, relatedProducts: teas}
             }

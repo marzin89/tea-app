@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { teaActions } from '../../store/slices/tea-slice';
 import { cartActions } from '../../store/slices/cart-slice';
-import { userActions } from '../../store/slices/user-slice';
 
 function Teas(props) {
     const teas                = useSelector((state) => state.tea.page);
