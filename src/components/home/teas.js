@@ -17,7 +17,7 @@ function Teas(props) {
 
         if (useAnalyticsCookies) {
             const tea = teas.find((tea) => tea._id == id);
-            dispatch(userActions.setItemsViewed(tea));
+            dispatch(teaActions.setItemsViewed(tea));
         }
     }
 

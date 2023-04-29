@@ -10,7 +10,6 @@ const userSlice = createSlice({
             useFunctionalCookies: false,
             useAnalyticsCookies:  false,
         },
-        itemsViewed:              [],
     },
     reducers: {
         fetchState(state) {
@@ -31,22 +30,7 @@ const userSlice = createSlice({
                     useAnalyticsCookies:  action.payload.useAnalyticsCookies,
                 }
             }
-        },
-        setItemsViewed(state, action) {
-            const itemExists = state.itemsViewed.find((item) => item._id == action.payload._id);
-            const length     = state.itemsViewed.length;
-            let itemsViewed  = length ? [...state.itemsViewed] : [];
-
-            if (!itemExists) {
-                if (length == 3) {
-                    itemsViewed = itemsViewed.slice(1);
-                }
-
-                itemsViewed.push(action.payload);
-            }
-
-            return {...state, itemsViewed: itemsViewed}
-        },
+        }
     }
 });
 

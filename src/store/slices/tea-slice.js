@@ -1,15 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const teaSlice = createSlice({
-    name:              'tea',
+    name:                'tea',
     initialState: {
-        tea:           [],
-        teas:          [],
-        page:          [],
-        pageArr:       [],
-        numberOfPages: 1,
-        currentPage:   1,
-        currentIndex:  0,
+        tea:             [],
+        teas:            [],
+        page:            [],
+        pageArr:         [],
+        numberOfPages:   1,
+        currentPage:     1,
+        currentIndex:    0,
+        itemsViewed:     [],
+        relatedProducts: [],
     },
     reducers: {
         setTeasAdmin(state, action) {
@@ -17,7 +19,7 @@ const teaSlice = createSlice({
         },
         setTea(state, action) {
             const tea = state.teas.find((item) => item._id == action.payload);
-            return { ...state, tea: tea }
+            return { ...state, tea: tea}
         },
         setTeas(state, action) {
             let page           = [];
@@ -72,6 +74,33 @@ const teaSlice = createSlice({
         updateTea(state, action) {
             return { ...state, tea: action.payload };
         },
+        setItemsViewed(state, action) {
+            const itemExists = state.itemsViewed.find((item) => item._id == action.payload._id);
+            const length     = state.itemsViewed.length;
+            let itemsViewed  = length ? [...state.itemsViewed] : [];
+
+            if (!itemExists) {
+                if (length == 3) {
+                    itemsViewed = itemsViewed.slice(1);
+                }
+
+                itemsViewed.push(action.payload);
+            }
+
+            return {...state, itemsViewed: itemsViewed}
+        },
+        setRelatedProducts(state) {
+            const teas = [];
+
+            if (state.itemsViewed.length) {
+                state.itemsViewed.foreach((element) => {
+                    const tea = state.teas.find((item) => item.type == element.type && item._id != element._id);
+                    teas = tea ? teas.push(tea) : teas;
+                });
+    
+                return {...state, relatedProducts: teas}
+            }
+        }
     }
 });
 
