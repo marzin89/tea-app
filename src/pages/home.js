@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Teas from '../components/home/teas';
 import SearchForm from '../components/home/search-form';
+import RelatedProducts from '../components/home/related-products';
 import ToggleBtns from '../components/home/toggle-btns';
 import { useSelector, useDispatch } from 'react-redux';
 import { teaActions } from '../store/slices/tea-slice';
@@ -66,6 +67,7 @@ function Home() {
                 <p className="error">{errorMessage}</p>}
                 {numberOfPages > 1 ? <ToggleBtns isCurrentPage={isCurrentPage} /> : null}
             </div>
+            {relatedProducts.length ? <RelatedProducts products={relatedProducts} /> : null}
         </main>
     );
 }
