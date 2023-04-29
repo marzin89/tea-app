@@ -14,12 +14,19 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { userActions } from './store/slices/user-slice';
+import { useEffect } from 'react';
 
 function App() {
   const isSignedIn = useSelector((state) => state.user.isSignedIn);
   const showCart   = useSelector((state) => state.cart.showCart);
   const isConsent  = useSelector((state) => state.user.isConsent);
+  const dispatch   = useDispatch();
+
+  useEffect(() => {
+    dispatch(userActions.fetchState());
+  })
 
   return (
     <div className="App">

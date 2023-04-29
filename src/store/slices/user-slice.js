@@ -13,6 +13,9 @@ const userSlice = createSlice({
         itemsViewed:              [],
     },
     reducers: {
+        fetchState(state) {
+            return {...state}
+        },
         login(state) {
             return {...state, isSignedIn: true};
         },
