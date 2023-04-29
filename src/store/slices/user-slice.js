@@ -32,13 +32,21 @@ const userSlice = createSlice({
                 }
             }
         },
-        addItemViewed(state, action) {
+        setItemsViewed(state, action) {
             const itemExists = state.itemsViewed.find((item) => item._id == action.payload._id);
+            const length     = state.itemsViewed.length;
+            let itemsViewed  = length ? [...state.itemsViewed] : [];
 
             if (!itemExists) {
-                return {...state, itemsViewed: [...state.itemsViewed, action.payload]}
+                if (length == 3) {
+                    itemsViewed = itemsViewed.slice(1);
+                }
+
+                itemsViewed.push(action.payload);
             }
-        }
+
+            return {...state, itemsViewed: itemsViewed}
+        },
     }
 });
 

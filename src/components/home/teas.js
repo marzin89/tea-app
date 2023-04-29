@@ -3,15 +3,22 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { teaActions } from '../../store/slices/tea-slice';
 import { cartActions } from '../../store/slices/cart-slice';
+import { userActions } from '../../store/slices/user-slice';
 
 function Teas(props) {
-    const teas     = useSelector((state) => state.tea.page);
-    const items    = useSelector((state) => state.cart.items);
-    const dispatch = useDispatch();
+    const teas                = useSelector((state) => state.tea.page);
+    const items               = useSelector((state) => state.cart.items);
+    const useAnalyticsCookies = useSelector((state) => state.user.cookiePreferences.useAnalyticsCookies);
+    const dispatch            = useDispatch();
 
     const getTea = (e) => {
         const id = e.target.parentElement.id;
         dispatch(teaActions.setTea(id));
+
+        if (useAnalyticsCookies) {
+            const tea = teas.find((tea) => tea._id == id);
+            dispatch(userActions.setItemsViewed(tea));
+        }
     }
 
     const addToCart = (e) => {
