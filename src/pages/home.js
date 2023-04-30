@@ -17,6 +17,7 @@ function Home() {
     const numberOfPages                   = useSelector((state) => state.tea.numberOfPages);
     const isSignedIn                      = useSelector((state) => state.user.isSignedIn);
     const useAnalyticsCookies             = useSelector((state) => state.user.cookiePreferences.useAnalyticsCookies);
+    const itemsViewed                     = useSelector((state) => state.tea.itemsViewed);
     const relatedProducts                 = useSelector((state) => state.tea.relatedProducts);
     const dispatch = useDispatch();
 
@@ -60,14 +61,15 @@ function Home() {
             {isSignedIn ? 
                 <p id="logout"><a className="link-main" href="" onClick={(e) => logout(e)}>Logga ut</a></p> :
                 <p id="login"><Link className="link-main" to="/login">Fyll på teskåpet</Link></p>}
-            <h1>Våra teer</h1>
             <div className="row">
                 <SearchForm setSearch={setIsSearch} getTeas={filterTeas} />
+                {relatedProducts.length ? <RelatedProducts products={relatedProducts} /> : null}
+                {relatedProducts.length ? <hr></hr> : null}
                 {teas.length ? <Teas isSearch={isSearch} teas={results} /> :
                 <p className="error">{errorMessage}</p>}
                 {numberOfPages > 1 ? <ToggleBtns isCurrentPage={isCurrentPage} /> : null}
             </div>
-            {relatedProducts.length ? <RelatedProducts products={relatedProducts} /> : null}
+
         </main>
     );
 }

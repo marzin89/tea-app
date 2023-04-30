@@ -223,7 +223,7 @@ button:hover {
     float: left;
 }
 
-.tea-list > div {
+.tea-list > div, #related-products > div {
     display: flex;
     flex-wrap: wrap;
     padding-top: 20px;
@@ -469,6 +469,15 @@ footer > p {
     cursor: default;
 }
 
+#related-products {
+    padding: 10px;
+}
+
+hr {
+    width: 97%;
+    margin: 0 auto;
+}
+
 @media only screen and (min-width: 451px) and (max-width: 700px) {
     #search-form {
         margin-left: 0;
@@ -479,7 +488,7 @@ footer > p {
         margin-left: 0;
     }
 
-    .tea-list > div {
+    .tea-list > div, #related-products > div {
         display: flex;
         column-count: 2;
         flex-wrap: wrap;
@@ -496,7 +505,7 @@ footer > p {
         margin-left: 0;
     }
 
-    .tea-list > div {
+    .tea-list > div, #related-products > div {
         display: flex;
         column-count: 3;
         flex-wrap: wrap;
@@ -552,7 +561,12 @@ footer > p {
         width: 100%;
     }
 
-    .tea-list > div {
+    #related-products {
+        width: 80%;
+        padding: 10px 0;
+    }
+
+    .tea-list > div, #related-products > div {
         column-count: 3;
     }
 
@@ -605,5 +619,10 @@ footer > p {
     .admin-form-right {
         width: 49%;
         float: right;
+    }
+
+    hr {
+        width: 80%;
+        margin: 0;
     }
 }

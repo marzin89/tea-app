@@ -43,22 +43,24 @@ function RelatedProducts(props) {
     }
 
     return (
-        <section>
-            <h2>Liknande produkter</h2>
-            {props.products.map((product) => {
-                return (
-                    <div key={product._id} className="tea">
-                        <Link id={product._id} to="/tea" onClick={(e) => getTea(e)}>
-                            <img className="thumbnail" src={teacup} alt="Tekopp"></img>
-                            <div className="row">
-                                <p className="name">{product.name}</p>
-                                <p className="price">{product.price} :-</p>
-                            </div>
-                            <button className="btn" onClick={(e) => addToCart(e)}>Lägg i varukorgen</button>
-                        </Link>
-                    </div>
-                );
-            })}
+        <section id="related-products">
+            <h1>Rekommenderat för dig</h1>
+            <div>
+                {props.products.map((product) => {
+                    return (
+                        <div key={product._id} className="tea">
+                            <Link id={product._id} to="/tea" onClick={(e) => getTea(e)}>
+                                <img className="thumbnail" src={teacup} alt="Tekopp"></img>
+                                <div className="row">
+                                    <p className="name">{product.name}</p>
+                                    <p className="price">{product.price} :-</p>
+                                </div>
+                                <button className="btn" onClick={(e) => addToCart(e)}>Lägg i varukorgen</button>
+                            </Link>
+                        </div>
+                    );
+                })}
+            </div>
         </section>
     );
 }
