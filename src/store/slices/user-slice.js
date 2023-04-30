@@ -5,6 +5,7 @@ const userSlice = createSlice({
     initialState: {
         isSignedIn:               false,
         isConsent:                false,
+        showCookiesBanner:        true,
         cookiePreferences: {
             useNecessaryCookies:  true,
             useFunctionalCookies: false,
@@ -25,11 +26,15 @@ const userSlice = createSlice({
             return {
                 ...state,
                 isConsent:                true,
+                showCookiesBanner:        false,
                 cookiePreferences: {
                     useFunctionalCookies: action.payload.useFunctionalCookies,
                     useAnalyticsCookies:  action.payload.useAnalyticsCookies,
                 }
             }
+        },
+        showCookiesBanner(state) {
+            return {...state, showCookiesBanner: true}
         }
     }
 });

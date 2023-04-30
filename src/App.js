@@ -20,10 +20,10 @@ import { userActions } from './store/slices/user-slice';
 import { useEffect } from 'react';
 
 function App() {
-  const isSignedIn = useSelector((state) => state.user.isSignedIn);
-  const showCart   = useSelector((state) => state.cart.showCart);
-  const isConsent  = useSelector((state) => state.user.isConsent);
-  const dispatch   = useDispatch();
+  const isSignedIn        = useSelector((state) => state.user.isSignedIn);
+  const showCart          = useSelector((state) => state.cart.showCart);
+  const showCookiesBanner = useSelector((state) => state.user.showCookiesBanner);
+  const dispatch          = useDispatch();
 
   useEffect(() => {
     dispatch(teaActions.fetchState());
@@ -44,7 +44,7 @@ function App() {
         <Route path="/tea" element={<Tea />} />
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
-      {!isConsent ? <Consent /> : null}
+      {showCookiesBanner ? <Consent /> : null}
       <Footer />
       </Router>
     </div>
