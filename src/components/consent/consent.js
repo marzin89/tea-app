@@ -79,9 +79,14 @@ function Consent() {
         }
     }
 
+    function handleButtonClick() {
+        dispatch(userActions.toggleCookiesBanner(false));
+    }
+
     return (
         <div id="consent">
-            <button id="close-cookies-banner-btn" disabled={isConsent == false}>&#x2715;</button>
+            <button id="close-cookies-banner-btn" disabled={isConsent == false} onClick={() => handleButtonClick()}>
+                &#x2715;</button>
             <div id="consent-inner-wrap">
                 <h2>Vi behöver ditt samtycke</h2>
                 <p>Vi använder cookies för att förbättra vår webbplats och för att anpassa din upplevelse.</p>

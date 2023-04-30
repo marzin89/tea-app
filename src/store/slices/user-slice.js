@@ -33,8 +33,8 @@ const userSlice = createSlice({
                 }
             }
         },
-        showCookiesBanner(state) {
-            return {...state, showCookiesBanner: true}
+        toggleCookiesBanner(state, action) {
+            return {...state, showCookiesBanner: action.payload}
         }
     }
 });

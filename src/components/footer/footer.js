@@ -6,7 +6,7 @@ function Footer() {
 
     function handleLinkClick(e) {
         e.preventDefault();
-        dispatch(userActions.showCookiesBanner());
+        dispatch(userActions.toggleCookiesBanner(true));
     }
 
     return (
