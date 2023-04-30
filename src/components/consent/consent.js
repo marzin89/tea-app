@@ -1,18 +1,18 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import { userActions } from '../../store/slices/user-slice';
 import { useSelector, useDispatch } from 'react-redux';
 
 function Consent() {
-    const [useFunctionalCookies, setUseFunctionalCookies] = useState(false);
-    const [useAnalyticsCookies, setUseAnalyticsCookies]   = useState(false);
+    const isConsent                  = useSelector((state) => state.user.isConsent);
+    const useFunctionalCookies       = useSelector((state) => state.user.cookiePreferences.useFunctionalCookies);
+    const useAnalyticsCookies        = useSelector((state) => state.user.cookiePreferences.useAnalyticsCookies);
     const functionalCookiesSwitchRef = useRef();
     const analyticsCookiesSwitchRef  = useRef();
     const functionalCookiesSliderRef = useRef();
     const analyticsCookiesSliderRef  = useRef();
     const aboutCookiesRef            = useRef();
     const typeOfCookiesRef           = useRef();
-    const isConsent = useSelector((state) => state.user.isConsent);
-    const dispatch = useDispatch();
+    const dispatch                   = useDispatch();
 
     const toggleInfo = (e) => {
         e.preventDefault();
@@ -28,55 +28,38 @@ function Consent() {
     }
 
     const setCookiePreferences = (e) => {
-        switch (e.target.id) {
-            case 'functional-cookies-switch':
-                e.target.style.backgroundColor = useFunctionalCookies == false ? 'lightskyblue' : 'lightgray';
-                functionalCookiesSliderRef.current.style.float = useFunctionalCookies == false ? 'right' : 'left';
-                setUseFunctionalCookies(useFunctionalCookies == false ? true : false);
-            break;
-
-            case 'analytics-cookies-switch':
-                e.target.style.backgroundColor = useAnalyticsCookies == false ? 'lightskyblue' : 'lightgray';
-                analyticsCookiesSliderRef.current.style.float = useAnalyticsCookies == false ? 'right' : 'left';
-                setUseAnalyticsCookies(useAnalyticsCookies == false ? true : false);
-            break;
-
-            case 'all-cookies-btn':
-                functionalCookiesSwitchRef.current.style.backgroundColor = 'lightskyblue';
-                analyticsCookiesSwitchRef.current.style.backgroundColor  = 'lightskyblue';
-                functionalCookiesSliderRef.current.style.float           = 'right';
-                analyticsCookiesSliderRef.current.style.float            = 'right';
-                setUseFunctionalCookies(true);
-                setUseAnalyticsCookies(true);
-                dispatch(userActions.setConsentAndCookiePreferences(
-                {
-                    useFunctionalCookies: true,
-                    useAnalyticsCookies:  true,    
-                }));
-            break;
-
-            case 'selected-cookies-btn':
-                dispatch(userActions.setConsentAndCookiePreferences(
-                {
-                    useFunctionalCookies: useFunctionalCookies,
-                    useAnalyticsCookies:  useAnalyticsCookies,
-                }));
-            break;
-
-            default:
-                functionalCookiesSwitchRef.current.style.backgroundColor = 'lightgray';
-                analyticsCookiesSwitchRef.current.style.backgroundColor  = 'lightgray';
-                functionalCookiesSliderRef.current.style.float           = 'left';
-                analyticsCookiesSliderRef.current.style.float            = 'left';
-                setUseFunctionalCookies(false);
-                setUseAnalyticsCookies(false);
-                dispatch(userActions.setConsentAndCookiePreferences(
-                {
-                    useFunctionalCookies: false,
-                    useAnalyticsCookies:  false,
-                }));
-            break;
+        if (e.target.id == 'functional-cookies-switch') {
+            e.target.className = useFunctionalCookies ? 'cookies-switch' : 'cookies-switch-enabled';
+            functionalCookiesSliderRef.current.className = useFunctionalCookies ? 'cookies-slider' : 
+                'cookies-slider-enabled';
+        
+        } else {
+            e.target.className = useAnalyticsCookies ? 'cookies-switch' : 'cookies-switch-enabled';
+            analyticsCookiesSliderRef.current.className = useAnalyticsCookies ? 'cookies-slider' : 
+                'cookies-slider-enabled';
         }
+    }
+
+    const saveCookiePreferences = (e) => {
+        if (e.target.id == 'all-cookies-btn') {
+            functionalCookiesSwitchRef.current.className = 'cookies-switch-enabled';
+            analyticsCookiesSwitchRef.current.className = 'cookies-switch-enabled';
+            functionalCookiesSliderRef.current.className = 'cookies-slider-enabled';
+            analyticsCookiesSliderRef.current.className = 'cookies-slider-enabled';
+        
+        } else if (e.target.id == 'necessary-cookie-btn') {
+            functionalCookiesSwitchRef.current.className = 'cookies-switch';
+            analyticsCookiesSwitchRef.current.className = 'cookies-switch';
+            functionalCookiesSliderRef.current.className = 'cookies-slider';
+            analyticsCookiesSliderRef.current.className = 'cookies-slider';
+        }
+
+        dispatch(userActions.setConsentAndCookiePreferences(
+            {
+                useFunctionalCookies: functionalCookiesSwitchRef.current.className == 'cookies-switch-enabled',
+                useAnalyticsCookies: analyticsCookiesSwitchRef.current.className == 'cookies-switch-enabled',
+            }
+        ))
     }
 
     function handleButtonClick() {
@@ -106,29 +89,31 @@ function Consent() {
                 <div id="types-of-cookies" ref={typeOfCookiesRef}>
                     <div className="row">
                         <h4 className="consent-heading">Nödvändiga</h4>
-                        <div id="necessary-cookies-switch" className="cookies-switch">
-                            <div id="necessary-cookies-slider" className="cookies-slider"></div>
+                        <div id="necessary-cookies-switch" className="cookies-switch-enabled">
+                            <div className="cookies-slider-enabled"></div>
                         </div>
                     </div>
                     <div className="row">
                         <h4 className="consent-heading">Funktionella</h4>
-                        <div id="functional-cookies-switch" className="cookies-switch" 
-                            ref={functionalCookiesSwitchRef} onClick={(e) => setCookiePreferences(e)}>
-                            <div className="cookies-slider" ref={functionalCookiesSliderRef}></div>
+                        <div id="functional-cookies-switch" className={useFunctionalCookies ? 'cookies-switch-enabled' : 
+                            'cookies-switch'} ref={functionalCookiesSwitchRef} onClick={(e) => setCookiePreferences(e)}>
+                            <div className={useFunctionalCookies ? 'cookies-slider-enabled' : 'cookies-slider'} 
+                                ref={functionalCookiesSliderRef}></div>
                         </div>
                     </div>
                     <div className="row">
                         <h4 className="consent-heading">Analytiska</h4>
-                        <div id="analytics-cookies-switch" className="cookies-switch"
-                            ref={analyticsCookiesSwitchRef} onClick={(e) => setCookiePreferences(e)}>
-                            <div className="cookies-slider" ref={analyticsCookiesSliderRef}></div>
+                        <div id="analytics-cookies-switch" className={useAnalyticsCookies ? 'cookies-switch-enabled' : 
+                            'cookies-switch'} ref={analyticsCookiesSwitchRef} onClick={(e) => setCookiePreferences(e)}>
+                            <div className={useAnalyticsCookies ? 'cookies-slider-enabled' : 'cookies-slider'} 
+                                ref={analyticsCookiesSliderRef}></div>
                         </div>
                     </div>
                 </div>
-                <button id="all-cookies-btn" className="consent-btn" onClick={(e) => setCookiePreferences(e)}>Alla</button>
+                <button id="all-cookies-btn" className="consent-btn" onClick={(e) => saveCookiePreferences(e)}>Alla</button>
                 <button id="selected-cookies-btn" className="consent-btn" disabled={!useFunctionalCookies && !useAnalyticsCookies} 
-                    onClick={(e) => setCookiePreferences(e)}>Urval</button>
-                <button id="necessary-cookie-btn" className="consent-btn" onClick={(e) => setCookiePreferences(e)}>
+                    onClick={(e) => saveCookiePreferences(e)}>Urval</button>
+                <button id="necessary-cookie-btn" className="consent-btn" onClick={(e) => saveCookiePreferences(e)}>
                     Endast nödvändiga</button>
             </div>
         </div>
