@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { userActions } from '../../store/slices/user-slice';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 function Consent() {
     const [useFunctionalCookies, setUseFunctionalCookies] = useState(false);
@@ -11,6 +11,7 @@ function Consent() {
     const analyticsCookiesSliderRef  = useRef();
     const aboutCookiesRef            = useRef();
     const typeOfCookiesRef           = useRef();
+    const isConsent = useSelector((state) => state.user.isConsent);
     const dispatch = useDispatch();
 
     const toggleInfo = (e) => {
@@ -80,6 +81,7 @@ function Consent() {
 
     return (
         <div id="consent">
+            <button id="close-cookies-banner-btn" disabled={isConsent == false}>&#x2715;</button>
             <div id="consent-inner-wrap">
                 <h2>Vi behöver ditt samtycke</h2>
                 <p>Vi använder cookies för att förbättra vår webbplats och för att anpassa din upplevelse.</p>
