@@ -1,4 +1,6 @@
 import Cart from '../components/cart/cart';
+import AddressForm from '../components/checkout/address-form';
+import ShippingMethod from '../components/checkout/shipping-method';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../store/slices/user-slice';
 
@@ -19,6 +21,8 @@ const Checkout = () => {
                         : null}
                 <h1 id="h1-checkout">Ditt köp</h1>
                 <Cart id="checkout-cart" />
+                <AddressForm />
+                <ShippingMethod />
                 <button className="btn">Betala</button>
             </section>
         </main>

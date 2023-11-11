@@ -77,7 +77,7 @@ const AdminForm = (props) => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="admin-form-left">
+                    <div className="form-left">
                         <label htmlFor="name">Namn *</label>
                         <input id="name" className="text-input" ref={nameRef} defaultValue={props.tea.name}></input>
                         {nameErr ? <p className="error">{nameErr}</p> : null}
@@ -96,7 +96,7 @@ const AdminForm = (props) => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="admin-form-left">
+                    <div className="form-left">
                         <label htmlFor="origin">Ursprung *</label>
                         <select id="origin" className="text-input" defaultValue={props.tea.origin} 
                             ref={originRef}>

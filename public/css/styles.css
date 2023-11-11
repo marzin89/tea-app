@@ -115,6 +115,16 @@ form {
     margin: 0 auto;
 }
 
+#address-form {
+    background-color: rgb(245, 255, 245);
+}
+
+.checkout-form {
+    min-width: 100%;
+    margin-left: 0;
+    padding: 10px;
+}
+
 #search-form {
     display: flex;
     padding: 0 0.5%;
@@ -146,6 +156,12 @@ form {
 label {
     color: rgb(98, 2, 2);
     font-weight: bold;
+}
+
+.shipping-label {
+    color: rgb(98, 2, 2);
+    font-weight: bold;
+    margin-left: 5px;
 }
 
 input[type="radio"] {
@@ -257,6 +273,11 @@ button:hover {
     text-align: right;
 }
 
+.shipping-cost {
+    color:rgb(98, 2, 2);
+    font-weight: bold;
+}
+
 img {
     width: 100%;
     height: auto;
@@ -331,8 +352,9 @@ img {
 }
 
 #checkout {
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
+    background-color: rgb(236, 254, 236);
 }
 
 .link-main {
@@ -506,6 +528,26 @@ hr {
     margin-right: 5px;
 }
 
+#shipping {
+    background-color: rgb(236, 254, 236);
+}
+
+.shipping-method {
+    padding: 10px;
+}
+
+.shipping-method:hover {
+    background-color: rgb(245, 255, 245);
+}
+
+.shipping-details {
+    margin-left: 30px;
+}
+
+.checkout-section {
+    padding: 10px;
+}
+
 @media only screen and (min-width: 451px) and (max-width: 700px) {
     #search-form {
         margin-left: 0;
@@ -520,6 +562,15 @@ hr {
         display: flex;
         column-count: 2;
         flex-wrap: wrap;
+    }
+
+    #shipping-form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .shipping-method {
+        width: 50%;
     }
 }
 
@@ -561,14 +612,33 @@ hr {
         margin: 0 2%;
     }
 
-    .admin-form-left {
+    .form-left {
         width: 49%;
         float: left;
     }
 
-    .admin-form-right {
+    .form-right {
         width: 49%;
         float: right;
+    }
+
+    .address-form-left {
+        width: 70%;
+        float: left;
+    }
+
+    .address-form-right {
+        width: 28%;
+        float: right;
+    }
+
+    #shipping-form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .shipping-method {
+        width: 50%;
     }
 }
 
@@ -639,18 +709,37 @@ hr {
         margin: 0 2%;
     }
 
-    .admin-form-left {
+    .form-left {
         width: 49%;
         float: left;
     }
 
-    .admin-form-right {
+    .form-right {
         width: 49%;
+        float: right;
+    }
+
+    .address-form-left {
+        width: 75%;
+        float: left;
+    }
+
+    .address-form-right {
+        width: 23%;
         float: right;
     }
 
     hr {
         width: 80%;
         margin: 0;
+    }
+
+    #shipping-form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .shipping-method {
+        width: 50%;
     }
 }

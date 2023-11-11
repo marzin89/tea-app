@@ -88,8 +88,8 @@ const AddressForm = () => {
     }
 
     return (
-        <section>
-            <form id="address-form">
+        <section id="address-form">
+            <form className="checkout-form">
                 <div className="row">
                     <div className="form-left">
                         <label htmlFor="first-name">Förnamn *</label>
