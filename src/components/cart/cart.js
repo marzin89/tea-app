@@ -29,12 +29,20 @@ function Cart(props) {
 
         updatedItems.splice(index, 1, updatedItem);
         dispatch(cartActions.change(updatedItems));
+        
+        if (props.id == 'checkout-cart') {
+            dispatch(cartActions.calculateShippingCost());
+        }
     }
 
     const deleteItem = (index) => {
         const updatedItems = [...items];
         updatedItems.splice(index, 1);
-        dispatch(cartActions.delete(updatedItems));
+        dispatch(cartActions.delete(updatedItems)); 
+
+        if (props.id == 'checkout-cart') {
+            dispatch(cartActions.calculateShippingCost());
+        }
     }
 
     return (
