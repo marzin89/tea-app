@@ -19,7 +19,6 @@ const Checkout = () => {
                 {isSignedIn ?
                     <p id="logout"><a className="link-main" href="" onClick={(e) => logout(e)}>Logga ut</a></p> 
                         : null}
-                <h1 id="h1-checkout">Ditt köp</h1>
                 <Cart id="checkout-cart" />
                 <AddressForm />
                 <ShippingMethod />

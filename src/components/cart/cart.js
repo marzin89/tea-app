@@ -43,13 +43,13 @@ function Cart(props) {
                 <div className="row">
                     <p id="cart-heading" className="cart-left">Varukorgen</p>
                     <p className="cart-right"><a href="" onClick={(e) => hideCart(e)}>Stäng</a></p>
-                </div> : null}
+                </div> : <h1 id="h1-checkout">Ditt köp</h1>}
             {items.length ? items.map((item, index) => {
                 return (
                     <CartItem item={item} index={index} change={change} delete={deleteItem} />)}
                     
                 ) : <p className="error">Varukorgen är tom</p>}
-            {items.length ? <CartSum subtotal={subtotal} /> : null}
+            {items.length ? <CartSum id={props.id} subtotal={subtotal} /> : null}
             {props.id == 'cart' && items.length ? 
                 <div className="row">
                     <div className="btn">

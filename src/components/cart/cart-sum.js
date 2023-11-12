@@ -1,6 +1,23 @@
+import { useRef, useEffect } from 'react';
+
 const CartSum = (props) => {
+    const cartRef = useRef();
+
+    useEffect(() => {
+        if (props.id == 'checkout-cart') {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 318) {
+                    cartRef.current.className = 'checkout-cart-fixed';
+                
+                } else {
+                    cartRef.current.className = '';
+                }
+            });
+        }
+    });
+
     return (
-        <div>
+        <div id="cart-sum" ref={cartRef}>
             <div className="row">
                 <p className="cart-left sum-details">Totalt</p>
                 <p className="cart-right sum-details">{props.subtotal} :-</p>
