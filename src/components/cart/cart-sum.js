@@ -1,7 +1,9 @@
 import { useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const CartSum = (props) => {
     const cartRef = useRef();
+    const shippingCost = useSelector((state) => state.cart.shippingCost);
 
     useEffect(() => {
         if (props.id == 'checkout-cart') {
@@ -26,6 +28,11 @@ const CartSum = (props) => {
                 <p className="cart-left sum-details">Moms</p>
                 <p className="cart-right sum-details">{0.25 * props.subtotal} :-</p>
             </div>
+            {props.id == 'checkout-cart' ?
+            <div>
+                <p className="cart-left sum-details">Frakt</p>
+                <p className="cart-right sum-details">{shippingCost} :-</p>
+            </div> : null}
             <div className="row">
                 <p className="cart-left sum-details">Att betala</p>
                 <p className="cart-right sum-details">{props.subtotal * 1.25} :-</p>
