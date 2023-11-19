@@ -153,7 +153,7 @@ form {
     display: none;
 }
 
-label {
+label, .label {
     color: rgb(98, 2, 2);
     font-weight: bold;
 }
@@ -407,7 +407,11 @@ footer p > a {
     padding-left: 0;
 }
 
-#rating {
+#review {
+    max-width: 400px; 
+}
+
+.star {
     font-size: 1.4em;
     color: orange;
 }
@@ -559,6 +563,10 @@ hr {
 
 .checkout-section {
     padding: 10px;
+}
+
+section {
+    overflow: auto;
 }
 
 @media only screen and (min-width: 451px) and (max-width: 700px) {
